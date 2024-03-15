@@ -1,15 +1,29 @@
-import React from 'react';
-import Banner from './component/Banner/Banner';
-import Info from './component/Info/Info';
-import './App.sass';
+import React from "react";
+import Banner from "./component/Banner/Banner";
+import Info from "./component/Info/Info";
+import style from "./App.sass";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
-// eslint-disable-next-line require-jsdoc
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#999999"
+    },
+    secondary: {
+      main: grey[600]
+    }
+  }
+});
+
 function App() {
   return (
-    <div className="app">
-      <Banner />
-      <Info />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className={style.pageLayout}>
+        <Banner className={style.banner} />
+        <Info className={style.info} />
+      </div>
+    </ThemeProvider>
   );
 }
 

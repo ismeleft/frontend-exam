@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -11,13 +12,13 @@ const filterFormat = (data, companyName, educationLevel, salaryLevel) => {
   let result = data;
 
   if (companyName) {
-    result = result.filter((item) => item.companyName.includes(companyName));
+    result = result.filter(item => item.companyName.includes(companyName));
   }
   if (educationLevel) {
-    result = result.filter((item) => item.educationId === educationLevel);
+    result = result.filter(item => item.educationId === educationLevel);
   }
   if (salaryLevel) {
-    result = result.filter((item) => item.salaryId === salaryLevel);
+    result = result.filter(item => item.salaryId === salaryLevel);
   }
 
   return result;
@@ -27,7 +28,7 @@ new Server({
   models: {
     jobList: Model,
     educationList: Model,
-    salaryList: Model,
+    salaryList: Model
   },
   factories: {
     jobList: Factory.extend({
@@ -51,7 +52,7 @@ new Server({
       },
       description(i) {
         return jobList[i].description;
-      },
+      }
     }),
     educationList: Factory.extend({
       id(i) {
@@ -59,7 +60,7 @@ new Server({
       },
       label(i) {
         return educationList[i].label;
-      },
+      }
     }),
     salaryList: Factory.extend({
       id(i) {
@@ -67,8 +68,8 @@ new Server({
       },
       label(i) {
         return salaryList[i].label;
-      },
-    }),
+      }
+    })
   },
   seeds(server) {
     server.createList("jobList", jobList.length);
@@ -88,7 +89,7 @@ new Server({
       const prePage = Number(request.queryParams.pre_page);
       const page = Number(request.queryParams.page);
 
-      let data = schema.jobLists
+      const data = schema.jobLists
         .all()
         .models.map(
           ({ attrs: { companyPhoto, description, ...rest } }) => rest
@@ -106,7 +107,7 @@ new Server({
         const resultData = filterData.slice(startIndex, endIndex);
         return {
           data: resultData,
-          total: filterData.length,
+          total: filterData.length
         };
       } else {
         const result = filterFormat(
@@ -117,22 +118,22 @@ new Server({
         );
         return {
           data: result,
-          total: result.length,
+          total: result.length
         };
       }
     });
 
-    this.get("/educationLevelList", (schema) => {
-      return schema.educationLists.all().models.map((item) => item.attrs);
+    this.get("/educationLevelList", schema => {
+      return schema.educationLists.all().models.map(item => item.attrs);
     });
 
-    this.get("/salaryLevelList", (schema) => {
-      return schema.salaryLists.all().models.map((item) => item.attrs);
+    this.get("/salaryLevelList", schema => {
+      return schema.salaryLists.all().models.map(item => item.attrs);
     });
 
     this.get("/jobs/:id", (schema, request) => {
       const id = request.params.id;
-      const data = schema.jobLists.all().models.find((item) => item.id === id);
+      const data = schema.jobLists.all().models.find(item => item.id === id);
 
       if (data) {
         const { preview, educationId, salaryId, ...rest } = data.attrs;
@@ -141,7 +142,7 @@ new Server({
         return [];
       }
     });
-  },
+  }
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

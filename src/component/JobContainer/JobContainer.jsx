@@ -1,22 +1,18 @@
-import { InfoCard } from "../InfoCard/InfoCard";
+import { JobCard } from "../JobCard/JobCard";
 import style from "./JobContainer.module.sass";
 
 const JobContainer = ({ jobs }) => {
-  if (!jobs) {
-    return (
-      <div className={style.jobContainer}>
-        <p>無資料</p>
-      </div>
-    );
-  } else {
-    return (
-      <div>
-        {jobs.map((job, index) => (
-          <InfoCard job={job} key={index} />
-        ))}
-      </div>
-    );
+  // 先確認回傳值是不是Array 才能用 map
+  if (!Array.isArray(jobs)) {
+    return null;
   }
+  return (
+    <div className={style.jobContainer}>
+      {jobs.map((job, index) => (
+        <JobCard job={job} key={index} />
+      ))}
+    </div>
+  );
 };
 
 export default JobContainer;

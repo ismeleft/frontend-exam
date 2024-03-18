@@ -1,4 +1,3 @@
-import JobContainer from "../JobContainer/JobContainer";
 import SearchBar from "../SearchBar/SearchBar";
 import style from "./Info.module.sass";
 
@@ -10,7 +9,6 @@ const Info = () => {
         <div className={style.title}>適合前端工程師的好工作</div>
       </div>
       <SearchBar />
-      <JobContainer />
     </div>
   );
 };

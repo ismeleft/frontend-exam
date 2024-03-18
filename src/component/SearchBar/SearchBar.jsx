@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   TextField,
   Button,
@@ -7,10 +7,14 @@ import {
   InputLabel,
   MenuItem,
   FormControl,
-  Select
+  Select,
+  Stack,
+  Skeleton
 } from "@mui/material";
 import axios from "axios";
 import JobContainer from "../JobContainer/JobContainer";
+import PaginationComponent from "../PaginationComponent/PaginationComponent";
+import style from "./SearchBar.module.sass";
 
 const SearchBar = () => {
   // 讀取各欄位
@@ -19,8 +23,12 @@ const SearchBar = () => {
   const [salary_level, setSalary] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-  // 是否有搜尋，沒有搜尋顯示無資料
-  const [hasSearched, setHasSearched] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // 分頁功能
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+  const [pageCount, setPageCount] = useState(0);
 
   const handleCompanyNameChange = e => {
     setCompanyName(e.target.value);
@@ -36,6 +44,7 @@ const SearchBar = () => {
 
   // fetch api
   const fetchData = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get("/api/v1/jobs", {
         params: {
@@ -44,20 +53,60 @@ const SearchBar = () => {
           salary_level
         }
       });
+      // 拿學歷跟薪水的資料
+      const [educationLevelResponse, salaryLevelResponse] = await Promise.all([
+        axios.get("/api/v1/educationLevelList"),
+        axios.get("/api/v1/salaryLevelList")
+      ]);
+
+      // 對應資料
       const jobData = response.data.data;
       console.log(jobData);
-      console.log(jobData.length);
-      setSearchResult(jobData || []);
+      const fullJobData = jobData.map(job => {
+        const educationLabel = educationLevelResponse.data.find(
+          education => education.id === String(job.educationId)
+        )?.label;
+
+        const salaryLabel = salaryLevelResponse.data.find(
+          salary => salary.id === String(job.salaryId)
+        )?.label;
+
+        return {
+          ...job,
+          educationLabel,
+          salaryLabel
+        };
+      });
+      console.log(fullJobData);
+
+      setSearchResult(fullJobData);
+      setPageCount(Math.ceil(fullJobData.length / itemsPerPage));
     } catch (error) {
       console.error(error);
       searchResult([]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   // button 提交呼叫fetch api
   const handleSubmit = async () => {
-    setHasSearched(true);
     await fetchData();
+  };
+
+  // 畫面渲染即有資料
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // 根據當前頁面切片數據
+  const currentData = searchResult.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handleChangePage = (event, newPage) => {
+    setCurrentPage(newPage);
   };
 
   return (
@@ -65,7 +114,7 @@ const SearchBar = () => {
       <Box
         sx={{
           width: "1336px",
-          margin: "20px 0px ",
+          margin: "10px 0px 10px 0px ",
           display: "flex",
           gap: "18px"
         }}
@@ -135,7 +184,22 @@ const SearchBar = () => {
           條件搜尋
         </Button>
       </Box>
-      {hasSearched && <JobContainer jobs={searchResult} />}
+      {isLoading ? (
+        <Stack spacing={1}>
+          <Skeleton />
+        </Stack>
+      ) : searchResult.length > 0 ? (
+        <>
+          <JobContainer jobs={currentData} />
+          <PaginationComponent
+            pageCount={pageCount}
+            currentPage={currentPage}
+            onPageChange={handleChangePage}
+          />
+        </>
+      ) : (
+        <div className={style.noData}>無資料</div>
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import {
   Card,
   CardContent,
@@ -7,8 +7,24 @@ import {
   Button
 } from "@mui/material";
 import style from "./JobCard.module.sass";
+import DialogComponent from "../DialogComponent/DialogComponent";
+import axios from "axios";
 
 export const JobCard = ({ job }) => {
+  const [open, setOpen] = useState(false);
+  const [jobDetails, setJobDetails] = useState(null);
+
+  const handleClickOpen = async () => {
+    const response = await axios.get(`/api/v1/jobs/${job.id}`);
+    const result = response.data;
+    setJobDetails(result);
+    console.log(result);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <div>
       <Card
@@ -74,11 +90,16 @@ export const JobCard = ({ job }) => {
           </Typography>
         </CardContent>
         <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-          <Button size="small" sx={{ color: "#EE8927" }}>
+          <Button
+            size="small"
+            sx={{ color: "#EE8927" }}
+            onClick={handleClickOpen}
+          >
             查看細節
           </Button>
         </CardActions>
       </Card>
+      {open && <DialogComponent job={jobDetails} handleClose={handleClose} />}
     </div>
   );
 };

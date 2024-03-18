@@ -99,7 +99,13 @@ export const JobCard = ({ job }) => {
           </Button>
         </CardActions>
       </Card>
-      {open && <DialogComponent job={jobDetails} handleClose={handleClose} />}
+      {open && (
+        <DialogComponent
+          job={jobDetails}
+          handleClose={handleClose}
+          open={open}
+        />
+      )}
     </div>
   );
 };

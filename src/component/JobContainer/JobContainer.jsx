@@ -6,6 +6,7 @@ const JobContainer = ({ jobs }) => {
   if (!Array.isArray(jobs)) {
     return null;
   }
+
   return (
     <div className={style.jobContainer}>
       {jobs.map((job, index) => (

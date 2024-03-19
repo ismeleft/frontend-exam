@@ -15,7 +15,8 @@ export default function DialogComponent({ job, handleClose }) {
           sx={{
             fontSize: "24px",
             lineHeight: "30px",
-            fontWeight: "700"
+            fontWeight: "700",
+            color: "#4D4D4D"
           }}
         >
           詳細資訊
@@ -26,8 +27,7 @@ export default function DialogComponent({ job, handleClose }) {
               sx={{
                 fontSize: "24px",
                 lineHeight: "30px",
-                fontWeight: "700",
-                margin: "10px 0px"
+                fontWeight: "700"
               }}
             >
               {job.companyName}
@@ -35,10 +35,10 @@ export default function DialogComponent({ job, handleClose }) {
             <Typography
               sx={{ fontSize: "20px", lineHeight: "25px", fontWeight: "400" }}
             >
-              -{job.jobTitle}
+              {job.jobTitle}
             </Typography>
           </div>
-          <Carousel job={job} />
+          <Carousel images={job.companyPhoto} />
           <Typography
             dangerouslySetInnerHTML={{ __html: job.description }}
           ></Typography>

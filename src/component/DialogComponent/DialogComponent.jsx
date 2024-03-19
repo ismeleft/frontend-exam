@@ -16,7 +16,8 @@ export default function DialogComponent({ job, handleClose }) {
             fontSize: "24px",
             lineHeight: "30px",
             fontWeight: "700",
-            color: "#4D4D4D"
+            color: "#4D4D4D",
+            padding: "16px 24px"
           }}
         >
           詳細資訊
@@ -27,13 +28,19 @@ export default function DialogComponent({ job, handleClose }) {
               sx={{
                 fontSize: "24px",
                 lineHeight: "30px",
-                fontWeight: "700"
+                fontWeight: "700",
+                color: " #4D4D4D"
               }}
             >
               {job.companyName}
             </Typography>
             <Typography
-              sx={{ fontSize: "20px", lineHeight: "25px", fontWeight: "400" }}
+              sx={{
+                fontSize: "20px",
+                lineHeight: "25px",
+                fontWeight: "400",
+                color: " #4D4D4D"
+              }}
             >
               {job.jobTitle}
             </Typography>

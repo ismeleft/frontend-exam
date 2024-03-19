@@ -9,7 +9,8 @@ import {
   FormControl,
   Select,
   Skeleton,
-  Grid
+  Grid,
+  Hidden
 } from "@mui/material";
 import axios from "axios";
 import JobContainer from "../JobContainer/JobContainer";
@@ -111,66 +112,68 @@ const SearchBar = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          margin: "10px 0px 10px 0px ",
-          display: "flex",
-          gap: "18px"
-        }}
-      >
-        <TextField
-          id="outlined-required"
-          label="請輸入公司名稱"
-          sx={{ width: "647px" }}
-          value={company_name}
-          onChange={handleCompanyNameChange}
-        ></TextField>
-        <FormControl sx={{ width: "263.5px" }}>
-          <InputLabel id="demo-simple-select-label">教育程度</InputLabel>
-          <Select
-            value={education_level}
-            label="教育程度"
-            onChange={handleEducationChange}
-          >
-            <MenuItem value={1}>國小</MenuItem>
-            <MenuItem value={2}>國中</MenuItem>
-            <MenuItem value={3}>高中</MenuItem>
-            <MenuItem value={4}>大學</MenuItem>
-            <MenuItem value={5}>碩士</MenuItem>
-            <MenuItem value={6}>博士</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ width: "263.5px" }}>
-          <InputLabel id="demo-simple-select-label">期望薪資</InputLabel>
-          <Select
-            value={salary_level}
-            label="期望薪資"
-            onChange={handleSalaryChange}
-          >
-            <MenuItem value={1}>待遇面議</MenuItem>
-            <MenuItem value={2}>月薪 40,000 ~ 60,000 元</MenuItem>
-            <MenuItem value={3}>月薪 70,000 ~ 10,000 元</MenuItem>
-            <MenuItem value={4}>年薪 800,000 ~ 1,000,000 元</MenuItem>
-            <MenuItem value={5}>年薪 800,000 ~ 1,500,000 元</MenuItem>
-            <MenuItem value={6}>年薪 1,500,000 ~ 2,000,000 元</MenuItem>
-            <MenuItem value={7}>年薪 2,000,000 ~ 2,500,000 元</MenuItem>
-          </Select>
-        </FormControl>
-
-        <Button
-          type="button"
-          variant="contained"
+      <Hidden only={["xs"]}>
+        <Box
           sx={{
-            height: "56px",
-            fontWeight: "400",
-            lineHeight: "20px",
-            color: "#fff"
+            margin: "10px 0px 10px 0px ",
+            display: "flex",
+            gap: "18px"
           }}
-          onClick={handleSubmit}
         >
-          條件搜尋
-        </Button>
-      </Box>
+          <TextField
+            id="outlined-required"
+            label="請輸入公司名稱"
+            sx={{ width: "647px" }}
+            value={company_name}
+            onChange={handleCompanyNameChange}
+          ></TextField>
+          <FormControl sx={{ width: "263.5px" }}>
+            <InputLabel id="demo-simple-select-label">教育程度</InputLabel>
+            <Select
+              value={education_level}
+              label="教育程度"
+              onChange={handleEducationChange}
+            >
+              <MenuItem value={1}>國小</MenuItem>
+              <MenuItem value={2}>國中</MenuItem>
+              <MenuItem value={3}>高中</MenuItem>
+              <MenuItem value={4}>大學</MenuItem>
+              <MenuItem value={5}>碩士</MenuItem>
+              <MenuItem value={6}>博士</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ width: "263.5px" }}>
+            <InputLabel id="demo-simple-select-label">期望薪資</InputLabel>
+            <Select
+              value={salary_level}
+              label="期望薪資"
+              onChange={handleSalaryChange}
+            >
+              <MenuItem value={1}>待遇面議</MenuItem>
+              <MenuItem value={2}>月薪 40,000 ~ 60,000 元</MenuItem>
+              <MenuItem value={3}>月薪 70,000 ~ 10,000 元</MenuItem>
+              <MenuItem value={4}>年薪 800,000 ~ 1,000,000 元</MenuItem>
+              <MenuItem value={5}>年薪 800,000 ~ 1,500,000 元</MenuItem>
+              <MenuItem value={6}>年薪 1,500,000 ~ 2,000,000 元</MenuItem>
+              <MenuItem value={7}>年薪 2,000,000 ~ 2,500,000 元</MenuItem>
+            </Select>
+          </FormControl>
+
+          <Button
+            type="button"
+            variant="contained"
+            sx={{
+              height: "56px",
+              fontWeight: "400",
+              lineHeight: "20px",
+              color: "#fff"
+            }}
+            onClick={handleSubmit}
+          >
+            條件搜尋
+          </Button>
+        </Box>
+      </Hidden>
       {isLoading ? (
         <Grid container spacing={1}>
           {[...Array(itemsPerPage)].map((e, i) => (

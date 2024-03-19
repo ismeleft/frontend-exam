@@ -1,9 +1,9 @@
 import React from "react";
 import Banner from "./component/Banner/Banner";
 import Info from "./component/Info/Info";
-import style from "./App.sass";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import "./App.sass";
 
 const theme = createTheme({
   palette: {
@@ -19,9 +19,9 @@ const theme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className={style.pageLayout}>
-        <Banner className={style.banner} />
-        <Info className={style.info} />
+      <div className="pageLayout">
+        <Banner />
+        <Info />
       </div>
     </ThemeProvider>
   );

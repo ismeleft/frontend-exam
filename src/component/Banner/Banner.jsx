@@ -11,7 +11,7 @@ const Banner = () => {
       const { left, width } = bannerRef.current.getBoundingClientRect();
       const x = (event.clientX - left) / width;
 
-      const eyeMove = 20;
+      const eyeMove = 5;
       const moveX = (x - 1) * eyeMove;
 
       setEyeStyle({
@@ -25,32 +25,35 @@ const Banner = () => {
       <img
         src="/images/Background-01.png"
         width={"100%"}
-        height={"823px"}
+        height={"auto"}
         alt="banner-background"
         className="bannerBackground"
       ></img>
-      <img
-        src="/images/Character-01-White.png"
-        alt="banner-character-white"
-        className={style.bannerCharacterWhite}
-      />
-      <img
-        src="/images/Character-01.png"
-        alt="banner-character"
-        className={style.bannerCharacter}
-      ></img>
-      <img
-        src="/images/LeftEye-01.png"
-        alt="banner-character-left-eye"
-        className={style.bannerCharacterLeftEye}
-        style={eyeStyle}
-      ></img>
-      <img
-        src="/images/RightEye-01.png"
-        alt="banner-character-right-eye"
-        className={style.bannerCharacterRightEye}
-        style={eyeStyle}
-      ></img>
+      <div className={style.character}>
+        <img
+          src="/images/Character-01-White.png"
+          alt="banner-character-white"
+          className={style.bannerCharacterWhite}
+        />
+        <img
+          src="/images/Character-01.png"
+          alt="banner-character"
+          className={style.bannerCharacter}
+        />
+        <img
+          src="/images/LeftEye-01.png"
+          alt="banner-character-left-eye"
+          className={style.bannerCharacterLeftEye}
+          style={eyeStyle}
+        />
+        <img
+          src="/images/RightEye-01.png"
+          alt="banner-character-right-eye"
+          className={style.bannerCharacterRightEye}
+          style={eyeStyle}
+        />
+      </div>
+
       <img
         src="/images/Logo-01.png"
         alt="banner-logo"

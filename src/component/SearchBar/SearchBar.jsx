@@ -8,8 +8,8 @@ import {
   MenuItem,
   FormControl,
   Select,
-  Stack,
-  Skeleton
+  Skeleton,
+  Grid
 } from "@mui/material";
 import axios from "axios";
 import JobContainer from "../JobContainer/JobContainer";
@@ -113,7 +113,6 @@ const SearchBar = () => {
     <>
       <Box
         sx={{
-          width: "1336px",
           margin: "10px 0px 10px 0px ",
           display: "flex",
           gap: "18px"
@@ -133,12 +132,12 @@ const SearchBar = () => {
             label="教育程度"
             onChange={handleEducationChange}
           >
-            <MenuItem value={"國小"}>國小</MenuItem>
-            <MenuItem value={"國中"}>國中</MenuItem>
-            <MenuItem value={"高中"}>高中</MenuItem>
-            <MenuItem value={"大學"}>大學</MenuItem>
-            <MenuItem value={"碩士"}>碩士</MenuItem>
-            <MenuItem value={"博士"}>博士</MenuItem>
+            <MenuItem value={1}>國小</MenuItem>
+            <MenuItem value={2}>國中</MenuItem>
+            <MenuItem value={3}>高中</MenuItem>
+            <MenuItem value={4}>大學</MenuItem>
+            <MenuItem value={5}>碩士</MenuItem>
+            <MenuItem value={6}>博士</MenuItem>
           </Select>
         </FormControl>
         <FormControl sx={{ width: "263.5px" }}>
@@ -148,25 +147,13 @@ const SearchBar = () => {
             label="期望薪資"
             onChange={handleSalaryChange}
           >
-            <MenuItem value={"待遇面議"}>待遇面議</MenuItem>
-            <MenuItem value={"月薪 40,000 ~ 60,000 元"}>
-              月薪 40,000 ~ 60,000 元
-            </MenuItem>
-            <MenuItem value={"月薪 70,000 ~ 10,000 元"}>
-              月薪 70,000 ~ 10,000 元
-            </MenuItem>
-            <MenuItem value={"年薪 800,000 ~ 1,000,000 元"}>
-              年薪 800,000 ~ 1,000,000 元
-            </MenuItem>
-            <MenuItem value={"年薪 800,000 ~ 1,500,000 元"}>
-              年薪 800,000 ~ 1,500,000 元
-            </MenuItem>
-            <MenuItem value={"年薪 1,500,000 ~ 2,000,000 元"}>
-              年薪 1,500,000 ~ 2,000,000 元
-            </MenuItem>
-            <MenuItem value={"年薪 2,000,000 ~ 2,500,000 元"}>
-              年薪 2,000,000 ~ 2,500,000 元
-            </MenuItem>
+            <MenuItem value={1}>待遇面議</MenuItem>
+            <MenuItem value={2}>月薪 40,000 ~ 60,000 元</MenuItem>
+            <MenuItem value={3}>月薪 70,000 ~ 10,000 元</MenuItem>
+            <MenuItem value={4}>年薪 800,000 ~ 1,000,000 元</MenuItem>
+            <MenuItem value={5}>年薪 800,000 ~ 1,500,000 元</MenuItem>
+            <MenuItem value={6}>年薪 1,500,000 ~ 2,000,000 元</MenuItem>
+            <MenuItem value={7}>年薪 2,000,000 ~ 2,500,000 元</MenuItem>
           </Select>
         </FormControl>
 
@@ -185,9 +172,13 @@ const SearchBar = () => {
         </Button>
       </Box>
       {isLoading ? (
-        <Stack spacing={1}>
-          <Skeleton />
-        </Stack>
+        <Grid container spacing={1}>
+          {[...Array(itemsPerPage)].map((e, i) => (
+            <Grid item xs={4} key={i}>
+              <Skeleton variant="rounded" width={"425px"} height={"220px"} />
+            </Grid>
+          ))}
+        </Grid>
       ) : searchResult.length > 0 ? (
         <>
           <JobContainer jobs={currentData} />

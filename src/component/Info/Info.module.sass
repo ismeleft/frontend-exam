@@ -1,6 +1,5 @@
 .info
-    width: 1384px
-    height: 632px
+    max-width: 1384px
     background-color: #fff
     border-radius: 12px
     padding: 24px
@@ -10,6 +9,7 @@
 .titleBlock
     display: flex
     gap: 12px 
+    margin-bottom: 10px
     align-items: center   
 
 .titleDeco
@@ -22,3 +22,8 @@
     color: #4D4D4D
     line-height: 30px
     font-size: 24px 
+
+@media screen and (max-width:768px) 
+    .info
+        border-radius: 0px
+

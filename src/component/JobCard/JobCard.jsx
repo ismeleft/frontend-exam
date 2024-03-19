@@ -13,13 +13,21 @@ import axios from "axios";
 export const JobCard = ({ job }) => {
   const [open, setOpen] = useState(false);
   const [jobDetails, setJobDetails] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClickOpen = async () => {
-    const response = await axios.get(`/api/v1/jobs/${job.id}`);
-    const result = response.data;
-    setJobDetails(result);
-    console.log(result);
-    setOpen(true);
+    try {
+      setIsLoading(true);
+      const response = await axios.get(`/api/v1/jobs/${job.id}`);
+      const result = response.data;
+      setJobDetails(result);
+      console.log(result);
+      setOpen(true);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
   const handleClose = () => {
     setOpen(false);
@@ -89,7 +97,9 @@ export const JobCard = ({ job }) => {
             {job.preview}
           </Typography>
         </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "center" }}>
+        <CardActions
+          sx={{ display: "flex", justifyContent: "center", padding: "0px" }}
+        >
           <Button
             size="small"
             sx={{ color: "#EE8927" }}
@@ -104,6 +114,7 @@ export const JobCard = ({ job }) => {
           job={jobDetails}
           handleClose={handleClose}
           open={open}
+          loading={isLoading}
         />
       )}
     </div>

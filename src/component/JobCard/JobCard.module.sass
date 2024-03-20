@@ -1,4 +1,23 @@
+@import 'src/styles/_variable.sass'
+
+@mixin typographyFont
+    font-size: 14px
+    font-weight: 400
+
+@mixin typographyColor
+    color: $gray1000
+    
+
+.typography
+    @include typographyFont
+    @include typographyColor
+
+.typographyColor
+    @include typographyColor
+    
 .jobTitle,.jobEducation,.jobSalary
     display: flex
     gap: 6px
 
+.buttonDetail
+    color: $orange700

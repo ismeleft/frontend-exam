@@ -13,11 +13,11 @@ import axios from "axios";
 export const JobCard = ({ job }) => {
   const [open, setOpen] = useState(false);
   const [jobDetails, setJobDetails] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   const handleClickOpen = async () => {
+    // setIsLoading(true);
     try {
-      setIsLoading(true);
       const response = await axios.get(`/api/v1/jobs/${job.id}`);
       const result = response.data;
       setJobDetails(result);
@@ -26,7 +26,7 @@ export const JobCard = ({ job }) => {
     } catch (error) {
       console.error(error);
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
   const handleClose = () => {
@@ -44,12 +44,15 @@ export const JobCard = ({ job }) => {
           ":hover": { boxShadow: " 0px 0px 8px 0px #00000059" }
         }}
       >
-        {/* gap待訂 */}
         <CardContent
           sx={{ display: "flex", flexDirection: "column", gap: "4px" }}
         >
           <Typography
-            sx={{ color: "#4D4D4D", fontWeight: "700", fontSize: "24px" }}
+            className={style.typographyColor}
+            sx={{
+              fontWeight: "700",
+              fontSize: "24px"
+            }}
           >
             {job.companyName}
           </Typography>
@@ -60,11 +63,7 @@ export const JobCard = ({ job }) => {
               width={"18px"}
               height={"18px"}
             />
-            <Typography
-              sx={{ color: "#4D4D4D", fontWeight: "400", fontSize: "14px" }}
-            >
-              {job.jobTitle}
-            </Typography>
+            <Typography className={style.typography}>{job.jobTitle}</Typography>
           </div>
           <div className={style.jobEducation}>
             <img
@@ -73,9 +72,7 @@ export const JobCard = ({ job }) => {
               width={"18px"}
               height={"18px"}
             />
-            <Typography
-              sx={{ color: "#4D4D4D", fontWeight: "400", fontSize: "14px" }}
-            >
+            <Typography className={style.typography}>
               {job.educationLabel}
             </Typography>
           </div>
@@ -86,23 +83,18 @@ export const JobCard = ({ job }) => {
               width={"18px"}
               height={"18px"}
             />
-            <Typography
-              sx={{ color: "#4D4D4D", fontWeight: "400", fontSize: "14px" }}
-            >
+            <Typography className={style.typography}>
               {job.salaryLabel}
             </Typography>
           </div>
-          <Typography
-            sx={{ color: "#4D4D4D", fontWeight: "400", fontSize: "14px" }}
-          >
-            {job.preview}
-          </Typography>
+          <Typography className={style.typography}>{job.preview}</Typography>
         </CardContent>
         <CardActions
           sx={{ display: "flex", justifyContent: "center", padding: "0px" }}
         >
           <Button
             size="small"
+            // className={style.buttonDetail}
             sx={{
               color: "#EE8927",
               position: "absolute",
@@ -120,7 +112,6 @@ export const JobCard = ({ job }) => {
           job={jobDetails}
           handleClose={handleClose}
           open={open}
-          loading={isLoading}
         />
       )}
     </div>

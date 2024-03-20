@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import { CircularProgress, Dialog } from "@mui/material";
+import { Dialog } from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography";
 import Carousel from "../Carousel/Carousel";
 import style from "./DialogComponent.module.sass";
 
-export default function DialogComponent({ job, handleClose, open, loading }) {
+export default function DialogComponent({ job, handleClose, open }) {
   return (
     <>
       <Dialog maxWidth="md" onClose={handleClose} open={open}>
@@ -45,11 +45,7 @@ export default function DialogComponent({ job, handleClose, open, loading }) {
               {job.jobTitle}
             </Typography>
           </div>
-          {loading ? (
-            <CircularProgress />
-          ) : (
-            <Carousel images={job.companyPhoto} />
-          )}
+          <Carousel images={job.companyPhoto} />
           <Typography
             dangerouslySetInnerHTML={{ __html: job.description }}
           ></Typography>

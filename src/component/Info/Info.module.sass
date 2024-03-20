@@ -1,3 +1,6 @@
+@import "../../styles/_mixins"
+@import "../../styles/_variable"
+
 .info
     max-width: 1384px
     background-color: #fff
@@ -17,13 +20,11 @@
 .titleDeco
     width: 4px
     height: 16px
-    background-color: #EE8927
+    background-color: $orange700
 
 .title
-    font-weight: 700
-    color: #4D4D4D
-    line-height: 30px
-    font-size: 24px 
+    @include body5Bold
+    color: $gray1000
 
 @media screen and (max-width:1200px) 
     .info

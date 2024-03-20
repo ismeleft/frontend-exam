@@ -17,6 +17,8 @@ import JobContainer from "../JobContainer/JobContainer";
 import PaginationComponent from "../PaginationComponent/PaginationComponent";
 import style from "./SearchBar.module.sass";
 import { useMediaQuery, useTheme } from "@mui/material";
+import educationList from "../../constants/educationList";
+import salaryList from "../../constants/salaryList";
 
 const SearchBar = () => {
   // 讀取各欄位
@@ -66,7 +68,6 @@ const SearchBar = () => {
 
       // 對應資料
       const jobData = response.data.data;
-      console.log(jobData);
       const fullJobData = jobData.map(job => {
         const educationLabel = educationLevelResponse.data.find(
           education => education.id === String(job.educationId)
@@ -82,7 +83,6 @@ const SearchBar = () => {
           salaryLabel
         };
       });
-      console.log(fullJobData);
 
       setSearchResult(fullJobData);
       setPageCount(Math.ceil(fullJobData.length / itemsPerPage));
@@ -138,12 +138,11 @@ const SearchBar = () => {
               label="教育程度"
               onChange={handleEducationChange}
             >
-              <MenuItem value={1}>國小</MenuItem>
-              <MenuItem value={2}>國中</MenuItem>
-              <MenuItem value={3}>高中</MenuItem>
-              <MenuItem value={4}>大學</MenuItem>
-              <MenuItem value={5}>碩士</MenuItem>
-              <MenuItem value={6}>博士</MenuItem>
+              {educationList.map(education => (
+                <MenuItem key={education.id} value={education.id}>
+                  {education.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
           <FormControl sx={{ width: "263.5px" }}>
@@ -153,19 +152,18 @@ const SearchBar = () => {
               label="期望薪資"
               onChange={handleSalaryChange}
             >
-              <MenuItem value={1}>待遇面議</MenuItem>
-              <MenuItem value={2}>月薪 40,000 ~ 60,000 元</MenuItem>
-              <MenuItem value={3}>月薪 70,000 ~ 10,000 元</MenuItem>
-              <MenuItem value={4}>年薪 800,000 ~ 1,000,000 元</MenuItem>
-              <MenuItem value={5}>年薪 800,000 ~ 1,500,000 元</MenuItem>
-              <MenuItem value={6}>年薪 1,500,000 ~ 2,000,000 元</MenuItem>
-              <MenuItem value={7}>年薪 2,000,000 ~ 2,500,000 元</MenuItem>
+              {salaryList.map(salary => (
+                <MenuItem key={salary.id} value={salary.id}>
+                  {salary.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 
           <Button
             type="button"
             variant="contained"
+            // className={style.searchButton}
             sx={{
               height: "56px",
               fontWeight: "400",

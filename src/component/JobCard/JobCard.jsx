@@ -36,10 +36,11 @@ export const JobCard = ({ job }) => {
   return (
     <div>
       <Card
+        className={style.card}
         variant="outlined"
         sx={{
-          width: "433px",
           height: "220px",
+          position: "relative",
           ":hover": { boxShadow: " 0px 0px 8px 0px #00000059" }
         }}
       >
@@ -102,7 +103,7 @@ export const JobCard = ({ job }) => {
         >
           <Button
             size="small"
-            sx={{ color: "#EE8927" }}
+            sx={{ color: "#EE8927", position: "absolute", bottom: "5px" }}
             onClick={handleClickOpen}
           >
             查看細節

@@ -103,7 +103,12 @@ export const JobCard = ({ job }) => {
         >
           <Button
             size="small"
-            sx={{ color: "#EE8927", position: "absolute", bottom: "5px" }}
+            sx={{
+              color: "#EE8927",
+              position: "absolute",
+              bottom: "5px",
+              fontSize: "14px"
+            }}
             onClick={handleClickOpen}
           >
             查看細節

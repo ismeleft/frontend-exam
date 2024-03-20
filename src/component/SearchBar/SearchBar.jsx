@@ -16,6 +16,7 @@ import axios from "axios";
 import JobContainer from "../JobContainer/JobContainer";
 import PaginationComponent from "../PaginationComponent/PaginationComponent";
 import style from "./SearchBar.module.sass";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 const SearchBar = () => {
   // 讀取各欄位
@@ -26,9 +27,12 @@ const SearchBar = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   // 分頁功能
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = isMobile ? 4 : 6;
   const [pageCount, setPageCount] = useState(0);
 
   const handleCompanyNameChange = e => {
@@ -98,7 +102,7 @@ const SearchBar = () => {
   // 畫面渲染即有資料
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isMobile]);
 
   // 根據當前頁面切片數據
   const currentData = searchResult.slice(
@@ -175,10 +179,10 @@ const SearchBar = () => {
         </Box>
       </Hidden>
       {isLoading ? (
-        <Grid container spacing={1}>
+        <Grid container spacing={2} alignItems={"stretch"}>
           {[...Array(itemsPerPage)].map((e, i) => (
-            <Grid item xs={4} key={i}>
-              <Skeleton variant="rounded" width={"425px"} height={"220px"} />
+            <Grid item xs={12} sm={6} md={4} key={i}>
+              <Skeleton variant="rounded" height={"220px"} />
             </Grid>
           ))}
         </Grid>

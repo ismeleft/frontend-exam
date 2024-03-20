@@ -55,7 +55,7 @@ export default function DialogComponent({ job, handleClose, open, loading }) {
           ></Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
+          <Button autoFocus onClick={handleClose} sx={{ color: "#4D4D4D" }}>
             關閉
           </Button>
         </DialogActions>

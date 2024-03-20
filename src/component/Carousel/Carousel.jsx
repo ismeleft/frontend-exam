@@ -15,7 +15,13 @@ const Carousel = ({ images }) => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1
+          slidesToShow: 2
+        }
+      },
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1.1
         }
       }
     ]

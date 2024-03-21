@@ -36,7 +36,6 @@ export const JobCard = ({ job }) => {
   return (
     <div>
       <Card
-        className={style.card}
         variant="outlined"
         sx={{
           height: "220px",
@@ -45,15 +44,9 @@ export const JobCard = ({ job }) => {
         }}
       >
         <CardContent
-          sx={{ display: "flex", flexDirection: "column", gap: "4px" }}
+          sx={{ display: "flex", flexDirection: "column", gap: "10px" }}
         >
-          <Typography
-            className={style.typographyColor}
-            sx={{
-              fontWeight: "700",
-              fontSize: "24px"
-            }}
-          >
+          <Typography className={style.jobCardCompanyName}>
             {job.companyName}
           </Typography>
           <div className={style.jobTitle}>
@@ -63,7 +56,9 @@ export const JobCard = ({ job }) => {
               width={"18px"}
               height={"18px"}
             />
-            <Typography className={style.typography}>{job.jobTitle}</Typography>
+            <Typography className={style.jobCardInfo}>
+              {job.jobTitle}
+            </Typography>
           </div>
           <div className={style.jobEducation}>
             <img
@@ -72,7 +67,7 @@ export const JobCard = ({ job }) => {
               width={"18px"}
               height={"18px"}
             />
-            <Typography className={style.typography}>
+            <Typography className={style.jobCardInfo}>
               {job.educationLabel}
             </Typography>
           </div>
@@ -83,11 +78,13 @@ export const JobCard = ({ job }) => {
               width={"18px"}
               height={"18px"}
             />
-            <Typography className={style.typography}>
+            <Typography className={style.jobCardInfo}>
               {job.salaryLabel}
             </Typography>
           </div>
-          <Typography className={style.typography}>{job.preview}</Typography>
+          <Typography className={style.jobCardJobPreview}>
+            {job.preview}
+          </Typography>
         </CardContent>
         <CardActions
           sx={{ display: "flex", justifyContent: "center", padding: "0px" }}

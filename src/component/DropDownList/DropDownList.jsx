@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { fetchEducationLevelList, fetchSalaryLevelList } from "./api/api";
 
 const DropDownList = ({
   handleEducationChange,
@@ -13,16 +13,16 @@ const DropDownList = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const [educationLevelResponse, salaryLevelResponse] = await Promise.all([
-        axios.get("/api/v1/educationLevelList"),
-        axios.get("/api/v1/salaryLevelList")
+      const [educationLevelData, salaryLevelData] = await Promise.all([
+        fetchEducationLevelList(),
+        fetchSalaryLevelList()
       ]);
-      setEducationLevelData(educationLevelResponse.data);
-      setSalaryLevelData(salaryLevelResponse.data);
-      console.log(educationLevelResponse.data);
+      setEducationLevelData(educationLevelData);
+      setSalaryLevelData(salaryLevelData);
     };
     fetchData();
   }, []);
+
   return (
     <div
       style={{

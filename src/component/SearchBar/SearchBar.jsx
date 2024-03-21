@@ -4,21 +4,17 @@ import {
   TextField,
   Button,
   Box,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
   Skeleton,
   Grid,
-  Hidden
+  Hidden,
+  useMediaQuery,
+  useTheme
 } from "@mui/material";
 import axios from "axios";
 import JobContainer from "../JobContainer/JobContainer";
 import PaginationComponent from "../PaginationComponent/PaginationComponent";
 import style from "./SearchBar.module.sass";
-import { useMediaQuery, useTheme } from "@mui/material";
-import educationList from "../../constants/educationList";
-import salaryList from "../../constants/salaryList";
+import DropDownList from "../DropDownList/DropDownList";
 
 const SearchBar = () => {
   // 讀取各欄位
@@ -131,35 +127,12 @@ const SearchBar = () => {
             value={company_name}
             onChange={handleCompanyNameChange}
           ></TextField>
-          <FormControl sx={{ width: "263.5px" }}>
-            <InputLabel id="demo-simple-select-label">教育程度</InputLabel>
-            <Select
-              value={education_level}
-              label="教育程度"
-              onChange={handleEducationChange}
-            >
-              {educationList.map(education => (
-                <MenuItem key={education.id} value={education.id}>
-                  {education.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <FormControl sx={{ width: "263.5px" }}>
-            <InputLabel id="demo-simple-select-label">期望薪資</InputLabel>
-            <Select
-              value={salary_level}
-              label="期望薪資"
-              onChange={handleSalaryChange}
-            >
-              {salaryList.map(salary => (
-                <MenuItem key={salary.id} value={salary.id}>
-                  {salary.label}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
+          <DropDownList
+            educationLevel={education_level}
+            salaryLevel={salary_level}
+            handleEducationChange={handleEducationChange}
+            handleSalaryChange={handleSalaryChange}
+          />
           <Button
             type="button"
             variant="contained"

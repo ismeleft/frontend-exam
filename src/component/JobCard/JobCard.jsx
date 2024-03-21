@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import style from "./JobCard.module.sass";
 import DialogComponent from "../DialogComponent/DialogComponent";
+import axios from "axios";
 
 export const JobCard = ({ job }) => {
   const [open, setOpen] = useState(false);

@@ -4,7 +4,7 @@ import Info from "./component/Info/Info";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import "./App.sass";
-
+import { StyledEngineProvider } from "@mui/material/styles";
 const theme = createTheme({
   palette: {
     primary: {
@@ -18,12 +18,14 @@ const theme = createTheme({
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <div className="pageLayout">
-        <Banner />
-        <Info />
-      </div>
-    </ThemeProvider>
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <div className="pageLayout">
+          <Banner />
+          <Info />
+        </div>
+      </ThemeProvider>
+    </StyledEngineProvider>
   );
 }
 

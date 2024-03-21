@@ -1,23 +1,28 @@
 @import 'src/styles/_variable.sass'
+@import 'src/styles/_mixins.sass'
 
-@mixin typographyFont
-    font-size: 14px
-    font-weight: 400
+.jobCardInfo
+    @include body2
+    color: $gray800
 
-@mixin typographyColor
+.jobCardJobPreview
+    @include body2
     color: $gray1000
-    
 
-.typography
-    @include typographyFont
-    @include typographyColor
+.jobCardCompanyName
+    color: $gray1000
+    @include body5Bold
 
-.typographyColor
-    @include typographyColor
-    
 .jobTitle,.jobEducation,.jobSalary
     display: flex
     gap: 6px
 
 .buttonDetail
     color: $orange700
+    position: absolute
+    bottom: 8px
+    @include body2Bold
+
+@media screen and (max-width:768px)
+    .jobCardCompanyName
+        @include body3Bold

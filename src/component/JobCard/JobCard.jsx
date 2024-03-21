@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import style from "./JobCard.module.sass";
 import DialogComponent from "../DialogComponent/DialogComponent";
-import axios from "axios";
 
 export const JobCard = ({ job }) => {
   const [open, setOpen] = useState(false);
@@ -91,13 +90,7 @@ export const JobCard = ({ job }) => {
         >
           <Button
             size="small"
-            // className={style.buttonDetail}
-            sx={{
-              color: "#EE8927",
-              position: "absolute",
-              bottom: "5px",
-              fontSize: "14px"
-            }}
+            className={style.buttonDetail}
             onClick={handleClickOpen}
           >
             查看細節

@@ -1,8 +1,26 @@
-.dialogJobTitle
+@import 'src/styles/_mixins.sass'
+@import 'src/styles/_variable.sass'
+.dialogTitle
+    @include body5Bold
+    color: $gray1000
+    padding: 16px 24px
+
+.dialogTitleBlock
     display: flex
     align-items: center
     margin: 0px 0px 20px 0px
     gap: 8px
+
+.dialogCompanyTitle
+    @include body5Bold
+    color: $gray1000
+
+.dialogJobTitle
+    @include body4
+    color: $gray1000
+
+.dialogCloseBtn
+    color: $gray1000
 
 ul
     list-style: none
@@ -12,8 +30,22 @@ h1
 
 h1,h2,p,a
     color: #808080
-    font-size: 16px
-    line-height: 30px
+    @include body3
 
 a
     text-decoration: none
+
+@media screen and (max-width:768px)
+    .dialogTitle
+        @include body4Bold
+
+    .dialogTitleBlock
+        display: block
+
+    .dialogCompanyTitle
+        @include body4Bold
+        margin-bottom: 4px
+
+    .dialogJobTitle
+        @include body2
+        color: $gray1100

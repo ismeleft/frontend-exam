@@ -20,37 +20,13 @@ export default function DialogComponent({ job, handleClose, open }) {
           }
         }}
       >
-        <DialogTitle
-          sx={{
-            fontSize: "24px",
-            lineHeight: "30px",
-            fontWeight: "700",
-            color: "#4D4D4D",
-            padding: "16px 24px"
-          }}
-        >
-          詳細資訊
-        </DialogTitle>
+        <DialogTitle className={style.dialogTitle}>詳細資訊</DialogTitle>
         <DialogContent dividers sx={{ padding: "20px 24px" }}>
-          <div className={style.dialogJobTitle}>
-            <Typography
-              sx={{
-                fontSize: "24px",
-                lineHeight: "30px",
-                fontWeight: "700",
-                color: " #4D4D4D"
-              }}
-            >
+          <div className={style.dialogTitleBlock}>
+            <Typography className={style.dialogCompanyTitle}>
               {job.companyName}
             </Typography>
-            <Typography
-              sx={{
-                fontSize: "20px",
-                lineHeight: "25px",
-                fontWeight: "400",
-                color: " #4D4D4D"
-              }}
-            >
+            <Typography className={style.dialogJobTitle}>
               {job.jobTitle}
             </Typography>
           </div>
@@ -60,7 +36,11 @@ export default function DialogComponent({ job, handleClose, open }) {
           ></Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} sx={{ color: "#4D4D4D" }}>
+          <Button
+            autoFocus
+            onClick={handleClose}
+            className={style.dialogCloseBtn}
+          >
             關閉
           </Button>
         </DialogActions>

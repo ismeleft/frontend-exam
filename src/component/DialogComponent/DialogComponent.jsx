@@ -9,8 +9,17 @@ import style from "./DialogComponent.module.sass";
 
 export default function DialogComponent({ job, handleClose, open }) {
   return (
-    <>
-      <Dialog maxWidth="md" onClose={handleClose} open={open}>
+    <div>
+      <Dialog
+        onClose={handleClose}
+        open={open}
+        sx={{
+          "& .MuiDialog-paper": {
+            maxWidth: "750px",
+            width: "750px"
+          }
+        }}
+      >
         <DialogTitle
           sx={{
             fontSize: "24px",
@@ -22,7 +31,7 @@ export default function DialogComponent({ job, handleClose, open }) {
         >
           詳細資訊
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers sx={{ padding: "20px 24px" }}>
           <div className={style.dialogJobTitle}>
             <Typography
               sx={{
@@ -56,6 +65,6 @@ export default function DialogComponent({ job, handleClose, open }) {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 }

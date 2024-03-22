@@ -3,17 +3,24 @@ import Slider from "react-slick";
 
 const Carousel = ({ images }) => {
   const settings = {
+    initialSlide: 0,
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 3,
+    slidesToShow: 2.63,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 800,
+        settings: {
+          slidesToShow: 2.2
+        }
+      },
+      {
+        breakpoint: 700,
         settings: {
           slidesToShow: 2
         }
@@ -21,7 +28,7 @@ const Carousel = ({ images }) => {
       {
         breakpoint: 500,
         settings: {
-          slidesToShow: 1.1
+          slidesToShow: 1
         }
       }
     ]

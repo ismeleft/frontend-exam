@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { TextField, Button, Box, Hidden } from "@mui/material";
-// import style from "./SearchBar.module.sass";
 import DropDownList from "../DropDownList/DropDownList";
 import { useNavigate } from "react-router-dom";
 
@@ -59,7 +58,6 @@ const SearchBar = ({ onSearch }) => {
             <Button
               variant="contained"
               type="submit"
-              // className={style.searchButton}
               sx={{
                 height: "56px",
                 fontWeight: "400",

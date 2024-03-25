@@ -5,7 +5,7 @@ const Banner = () => {
   const bannerRef = useRef();
   const leftEyeRef = useRef();
   const rightEyeRef = useRef();
-  const eyeMove = 10;
+  const eyeMove = 5;
 
   const handleMouseMove = event => {
     if (bannerRef.current) {

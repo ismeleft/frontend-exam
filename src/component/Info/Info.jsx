@@ -8,8 +8,10 @@ import style from "./Info.module.sass";
 import { Skeleton, Grid, useTheme, useMediaQuery } from "@mui/material";
 import { fetchData } from "./api/api";
 import { useLocation, useNavigate } from "react-router-dom";
+
 const Info = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -31,13 +33,25 @@ const Info = () => {
 
   useEffect(() => {
     const updateURL = () => {
-      navigate(
-        `?companyName=${searchParams.companyName}&educationLevel=${searchParams.educationLevel}&salaryLevel=${searchParams.salaryLevel}`
-      );
+      if (
+        searchParams.companyName === "" &&
+        searchParams.educationLevel === "" &&
+        searchParams.salaryLevel === ""
+      ) {
+        return navigate("/");
+      } else {
+        navigate(
+          `?companyName=${searchParams.companyName}&educationLevel=${searchParams.educationLevel}&salaryLevel=${searchParams.salaryLevel}`
+        );
+      }
     };
 
     updateURL();
   }, [searchParams, navigate]);
+
+  useEffect(() => {
+    setSearchParams(getSearchParamsFromURL());
+  }, [location.search]);
 
   useEffect(() => {
     const getSearchResult = async () => {
@@ -50,10 +64,6 @@ const Info = () => {
 
     getSearchResult();
   }, [searchParams, itemsPerPage]);
-
-  useEffect(() => {
-    setSearchParams(getSearchParamsFromURL());
-  }, [location.search]);
 
   const handleSearch = newSearchParams => {
     setSearchParams(newSearchParams);
@@ -75,7 +85,7 @@ const Info = () => {
         <div className={style.titleDeco}></div>
         <div className={style.title}>適合前端工程師的好工作</div>
       </div>
-      <SearchBar onSearch={handleSearch} />
+      <SearchBar onSearch={handleSearch} searchParams={searchParams} />
       {isLoading ? (
         <Grid container spacing={2} alignItems={"stretch"}>
           {[...Array(itemsPerPage)].map((e, i) => (

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TextField, Button, Box, Hidden } from "@mui/material";
 import DropDownList from "../DropDownList/DropDownList";
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch, searchParams }) => {
   // 讀取各欄位
   const [companyName, setCompanyName] = useState("");
   const [educationLevel, setEducation] = useState("");
@@ -40,7 +40,7 @@ const SearchBar = ({ onSearch }) => {
               id="outlined-required"
               label="請輸入公司名稱"
               sx={{ width: "647px" }}
-              value={companyName}
+              value={searchParams.companyName || companyName}
               onChange={handleCompanyNameChange}
             ></TextField>
             <DropDownList
@@ -48,6 +48,7 @@ const SearchBar = ({ onSearch }) => {
               salaryLevel={salaryLevel}
               handleEducationChange={handleEducationChange}
               handleSalaryChange={handleSalaryChange}
+              searchParams={searchParams}
             />
             <Button
               variant="contained"

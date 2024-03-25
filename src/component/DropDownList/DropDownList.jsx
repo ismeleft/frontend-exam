@@ -6,7 +6,8 @@ const DropDownList = ({
   handleEducationChange,
   handleSalaryChange,
   salaryLevel,
-  educationLevel
+  educationLevel,
+  searchParams
 }) => {
   const [educationLevelData, setEducationLevelData] = useState([]);
   const [salaryLevelData, setSalaryLevelData] = useState([]);
@@ -35,7 +36,7 @@ const DropDownList = ({
       <FormControl sx={{ width: "100%" }}>
         <InputLabel id="demo-simple-select-label">教育程度</InputLabel>
         <Select
-          value={educationLevel}
+          value={searchParams.educationLevel || educationLevel}
           label="教育程度"
           onChange={handleEducationChange}
         >
@@ -49,7 +50,7 @@ const DropDownList = ({
       <FormControl sx={{ width: "100%" }}>
         <InputLabel id="demo-simple-select-label">期望薪資</InputLabel>
         <Select
-          value={salaryLevel}
+          value={searchParams.salaryLevel || salaryLevel}
           label="期望薪資"
           onChange={handleSalaryChange}
         >

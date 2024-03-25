@@ -5,6 +5,8 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import "./App.sass";
 import { StyledEngineProvider } from "@mui/material/styles";
+import { BrowserRouter as Router } from "react-router-dom";
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,10 +22,12 @@ function App() {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <div className="pageLayout">
-          <Banner />
-          <Info />
-        </div>
+        <Router>
+          <div className="pageLayout">
+            <Banner />
+            <Info />
+          </div>
+        </Router>
       </ThemeProvider>
     </StyledEngineProvider>
   );

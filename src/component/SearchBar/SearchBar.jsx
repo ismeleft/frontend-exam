@@ -2,8 +2,10 @@ import { useState } from "react";
 import { TextField, Button, Box, Hidden } from "@mui/material";
 // import style from "./SearchBar.module.sass";
 import DropDownList from "../DropDownList/DropDownList";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = ({ onSearch }) => {
+  const navigate = useNavigate();
   // 讀取各欄位
   const [companyName, setCompanyName] = useState("");
   const [educationLevel, setEducation] = useState("");
@@ -12,6 +14,10 @@ const SearchBar = ({ onSearch }) => {
   const handleSubmit = e => {
     e.preventDefault();
     onSearch({ companyName, educationLevel, salaryLevel });
+    navigate(
+      `/search?companyName=${companyName}&educationLevel=${educationLevel}&salaryLevel=${salaryLevel}`,
+      { replace: true }
+    );
   };
 
   const handleCompanyNameChange = e => {

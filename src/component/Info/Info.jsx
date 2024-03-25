@@ -7,19 +7,37 @@ import PaginationComponent from "../PaginationComponent/PaginationComponent";
 import style from "./Info.module.sass";
 import { Skeleton, Grid, useTheme, useMediaQuery } from "@mui/material";
 import { fetchData } from "./api/api";
+import { useLocation, useNavigate } from "react-router-dom";
 const Info = () => {
-  const [searchParams, setSearchParams] = useState({
-    companyName: "",
-    educationLevel: "",
-    salaryLevel: ""
-  });
-  const [searchResult, setSearchResult] = useState([]);
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [currentPage, setCurrentPage] = useState(1);
   const [pageCount, setPageCount] = useState(0);
   const itemsPerPage = isMobile ? 4 : 6;
+
+  const getSearchParamsFromURL = () => {
+    const params = new URLSearchParams(location.search);
+    return {
+      companyName: params.get("companyName") || "",
+      educationLevel: params.get("educationLevel") || "",
+      salaryLevel: params.get("salaryLevel") || ""
+    };
+  };
+
+  const [searchParams, setSearchParams] = useState(getSearchParamsFromURL);
+  const [searchResult, setSearchResult] = useState([]);
+
+  useEffect(() => {
+    const updateURL = () => {
+      navigate(
+        `?companyName=${searchParams.companyName}&educationLevel=${searchParams.educationLevel}&salaryLevel=${searchParams.salaryLevel}`
+      );
+    };
+
+    updateURL();
+  }, [searchParams, navigate]);
 
   useEffect(() => {
     const getSearchResult = async () => {
@@ -32,6 +50,10 @@ const Info = () => {
 
     getSearchResult();
   }, [searchParams, itemsPerPage]);
+
+  useEffect(() => {
+    setSearchParams(getSearchParamsFromURL());
+  }, [location.search]);
 
   const handleSearch = newSearchParams => {
     setSearchParams(newSearchParams);

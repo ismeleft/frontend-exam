@@ -1,8 +1,8 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { TextField, Button, Box, Hidden } from "@mui/material";
 import DropDownList from "../DropDownList/DropDownList";
 
-const SearchBar = ({ onSearch, searchParams }) => {
+const SearchBar = React.memo(({ onSearch, searchParams }) => {
   // 讀取各欄位
   const [companyName, setCompanyName] = useState("");
   const [educationLevel, setEducation] = useState("");
@@ -67,6 +67,6 @@ const SearchBar = ({ onSearch, searchParams }) => {
       </Hidden>
     </>
   );
-};
+});
 
 export default SearchBar;

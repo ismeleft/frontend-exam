@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import JobContainer from "../JobContainer/JobContainer";
 import PaginationComponent from "../PaginationComponent/PaginationComponent";
@@ -65,14 +65,14 @@ const Info = () => {
     getSearchResult();
   }, [searchParams, itemsPerPage]);
 
-  const handleSearch = newSearchParams => {
+  const handleSearch = useCallback(newSearchParams => {
     setSearchParams(newSearchParams);
     setCurrentPage(1);
-  };
+  }, []);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = useCallback((event, newPage) => {
     setCurrentPage(newPage);
-  };
+  }, []);
 
   const currentData = searchResult.slice(
     (currentPage - 1) * itemsPerPage,

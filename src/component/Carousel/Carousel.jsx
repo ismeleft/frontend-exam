@@ -7,33 +7,26 @@ const Carousel = ({ images }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 2.63,
+    slidesToShow: 2.69,
     slidesToScroll: 1,
     arrows: false,
     autoplay: true,
     autoplaySpeed: 3000,
     responsive: [
       {
-        breakpoint: 800,
-        settings: {
-          slidesToShow: 2.2
-        }
+        breakpoint: 1024,
+        settings: { slidesToShow: 2.5 }
       },
       {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 2
-        }
+        breakpoint: 768,
+        settings: { slidesToShow: 2 }
       },
       {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 1
-        }
+        breakpoint: 480,
+        settings: { slidesToShow: 1 }
       }
     ]
   };
-
   return (
     <Slider {...settings}>
       {images.map((image, index) => (

@@ -9,12 +9,7 @@ const JobContainer = ({ jobs }) => {
   }
 
   return (
-    <Grid
-      container
-      spacing={2}
-      className={style.jobContainer}
-      alignItems="stretch"
-    >
+    <Grid container spacing={1.5} className={style.jobContainer}>
       {jobs.map((job, index) => (
         <Grid item xs={12} sm={6} md={4} key={index}>
           <JobCard job={job} />

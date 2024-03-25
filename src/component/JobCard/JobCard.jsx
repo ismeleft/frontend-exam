@@ -13,10 +13,8 @@ import axios from "axios";
 export const JobCard = ({ job }) => {
   const [open, setOpen] = useState(false);
   const [jobDetails, setJobDetails] = useState(null);
-  // const [isLoading, setIsLoading] = useState(false);
 
   const handleClickOpen = async () => {
-    // setIsLoading(true);
     try {
       const response = await axios.get(`/api/v1/jobs/${job.id}`);
       const result = response.data;
@@ -25,8 +23,6 @@ export const JobCard = ({ job }) => {
       setOpen(true);
     } catch (error) {
       console.error(error);
-    } finally {
-      // setIsLoading(false);
     }
   };
   const handleClose = () => {

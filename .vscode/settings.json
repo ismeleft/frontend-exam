@@ -10,6 +10,8 @@
     "explorer.confirmDelete": false,
     "files.associations": {
       "*.sass": "sass"
-    }
+    },"eslint.options": {
+      "overrideConfigFile": ".eslintrc.json"
+    }, "prettier.configPath": ".prettierrc"
   }
   

@@ -20,7 +20,9 @@ const theme = createTheme({
 });
 
 function App() {
-  const { isOpen, jobDetails, closeDialog } = useDialogStore();
+  const isOpen = useDialogStore(state => state.isOpen);
+  const jobDetails = useDialogStore(state => state.jobDetails);
+  const closeDialog = useDialogStore(state => state.closeDialog);
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>

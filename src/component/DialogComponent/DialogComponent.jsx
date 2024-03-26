@@ -6,13 +6,15 @@ import DialogActions from "@mui/material/DialogActions";
 import Typography from "@mui/material/Typography";
 import Carousel from "../Carousel/Carousel";
 import style from "./DialogComponent.module.sass";
+import useDialogStore from "./DialogStore";
 
-export default function DialogComponent({ job, handleClose, open }) {
+export default function DialogComponent() {
+  const { isOpen, jobDetails, closeDialog } = useDialogStore();
   return (
     <div>
       <Dialog
-        onClose={handleClose}
-        open={open}
+        onClose={closeDialog}
+        open={isOpen}
         sx={{
           "& .MuiDialog-paper": {
             maxWidth: "750px",
@@ -24,21 +26,21 @@ export default function DialogComponent({ job, handleClose, open }) {
         <DialogContent dividers sx={{ padding: "20px 24px" }}>
           <div className={style.dialogTitleBlock}>
             <Typography className={style.dialogCompanyTitle}>
-              {job.companyName}
+              {jobDetails.companyName}
             </Typography>
             <Typography className={style.dialogJobTitle}>
-              {job.jobTitle}
+              {jobDetails.jobTitle}
             </Typography>
           </div>
-          <Carousel images={job.companyPhoto} />
+          <Carousel images={jobDetails.companyPhoto} />
           <Typography
-            dangerouslySetInnerHTML={{ __html: job.description }}
+            dangerouslySetInnerHTML={{ __html: jobDetails.description }}
           ></Typography>
         </DialogContent>
         <DialogActions>
           <Button
             autoFocus
-            onClick={handleClose}
+            onClick={closeDialog}
             className={style.dialogCloseBtn}
           >
             關閉

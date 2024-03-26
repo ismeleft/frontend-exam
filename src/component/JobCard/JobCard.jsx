@@ -10,7 +10,7 @@ import axios from "axios";
 import useDialogStore from "../DialogComponent/DialogStore";
 
 export const JobCard = ({ job }) => {
-  const { openDialog } = useDialogStore();
+  const openDialog = useDialogStore(state => state.openDialog);
 
   const handleClickOpen = async () => {
     try {

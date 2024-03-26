@@ -2,3 +2,15 @@
     display: flex
     justify-content: flex-start
     flex-wrap: wrap
+    display: grid
+    grid-template-columns: repeat(3,1fr)
+    gap: 12px
+
+@media screen and (max-width:1200px)
+    .jobContainer
+        grid-template-columns: repeat(2,1fr)
+
+@media screen and (max-width:600px)
+    .jobContainer
+        grid-template-columns: repeat(1,1fr)
+        gap: 10px

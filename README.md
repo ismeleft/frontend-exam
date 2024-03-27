@@ -7,6 +7,7 @@ demo 網址：https://frontend-exam-iota.vercel.app/
 此專案使用 React 進行開發，並使用 Vercel 部署。
 
 - React
+- Zustand
 - Sass Module
 - Material UI
 - Axios

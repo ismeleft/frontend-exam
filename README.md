@@ -1,15 +1,28 @@
 ## Frontend Engineer Exam 實作紀錄 📝
+demo 網址：https://frontend-exam-iota.vercel.app/
+
+---
+### 技術內容
 
 此專案使用 React 進行開發，並使用 Vercel 部署。
 
-demo 網址：https://frontend-exam-iota.vercel.app/
+- React
+- Sass Module
+- Material UI
+- Axios
+- React Slick
+- Vercel
 
+---
 
 ### 專案下載使用方式
 
 下載後，安裝 node_modules `yarn install`，並使用 `yarn run start` 即可執行專案。
 
+---
+
 ### 專案功能特色
+
 1. 人物眼睛隨著游標移動
 ![眼睛移動](https://github.com/ismeleft/frontend-exam/assets/76611330/381704e7-fde5-4f2c-8a9a-607ea9aae781)
 
@@ -26,6 +39,7 @@ demo 網址：https://frontend-exam-iota.vercel.app/
 5. RWD 設計
 ![RWD 設計](https://github.com/ismeleft/frontend-exam/assets/76611330/26ed93a9-7ccf-46e3-9260-c7c4c30564d0)
 
+---
 
 ### 專案架構
 
